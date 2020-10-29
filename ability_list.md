@@ -1,17 +1,19 @@
-* “¾ˆÓ
+* å¾—æ„
   * bash
   * awk/sed
-* d–‚ÅG‚Á‚½‚±‚Æ‚ª‚ ‚é
+* ä»•äº‹ã§è§¦ã£ãŸã“ã¨ãŒã‚ã‚‹
   * Ruby
     * Ruby on Rails
     * Sinatra
-  * Excelƒ}ƒNƒ
-* hello worldi‘Ğ‚âŒ¤C‚È‚Çj
-  * ƒNƒ‰ƒEƒh
+  * Excelãƒã‚¯ãƒ­
+* hello worldï¼ˆæ›¸ç±ã‚„ç ”ä¿®ãªã©ï¼‰
+  * RPA
+    * UiPath
+  * ã‚¯ãƒ©ã‚¦ãƒ‰
     * AWS
     * heroku
   * IaC
     * docker
-  * ‚»‚Ì‘¼
-    * Redmine\’z
+  * ãã®ä»–
+    * Redmineæ§‹ç¯‰
     * RSS
