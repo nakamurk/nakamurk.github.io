@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="SJIS" />
+  <title>framework_template</title>
+  <style>
+  div {background-color: none;}
+  table {
+    align: center;
+    width: 80%;
+    border-spacing: 5px;
+    background-color: #f1f1c1;
+  }
+  textarea {
+    width: 90%;
+    height: 300px;
+  }
+  #toc_container {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border: 1px solid #aaa;
+    display: table;
+    font-size: 95%;
+    margin-bottom: 1em;
+    padding: 20px;
+    width: auto;
+  }
+  .toc_title {
+    font-weight: 700;
+    text-align: center;
+  }
+
+  #toc_container li, #toc_container ul, #toc_container ul li{
+    list-style: outside none none !important;
+  }
+  </style>
+</head>
+<body>
+
+<div id="toc_container">
+<p class="toc_title">Contents</p>
+<ul class="toc_list">
+  <li><a href="#time_management">時間管理</a>
+  <li><a href="#johari_window">ジョハリの窓</a>
+</li>
+</ul>
+</div>
+
+<hr />
+
+<h2 id="time_management">Time Management</h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>緊急度が高い</th>
+    <th>緊急度が低い</th>
+  </tr>
+
+  <tr>
+    <th>重要度が高い</th>
+    <td><textarea name="problem_issue"></textarea></td>
+    <td><textarea name="high_quality"></textarea></td>
+  </tr>
+  
+  <tr>
+    <th>重要度が低い</th>
+    <td><textarea name="fake"></textarea></td>
+    <td><textarea name="waste"></textarea></td>
+  </tr>
+</table>
+<a href="https://sp-jp.fujifilm.com/future-clip/visualization/vol27.html">参考</a>
+
+<hr />
+
+<h2 id="johari_window">ジョハリの窓</h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>自分が分かっている</th>
+    <th>自分が分かっていない</th>
+  </tr>
+
+  <tr>
+    <th>他人が分かっている</th>
+    <td><textarea name="open_self"></textarea></td>
+    <td><textarea name="blind_self"></textarea></td>
+  </tr>
+  
+  <tr>
+    <th>他人が分かっていない</th>
+    <td><textarea name="hidden_self"></textarea></td>
+    <td><textarea name="unknown_self"></textarea></td>
+  </tr>
+</table>
+<a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%8F%E3%83%AA%E3%81%AE%E7%AA%93">参考</a>
+
+</body>
+</html>
