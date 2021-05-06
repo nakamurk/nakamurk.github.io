@@ -55,6 +55,7 @@
     const version = "v1.0";
     const endpoint = "index.html";
 
+    let video_id;
     let rowNumber = 0;
     let sleepTime = 0;
 
@@ -67,8 +68,12 @@
       for (i = 0; i < params.length; i++) {
         let element = params[i].split('=');
         switch (element[0]) {
+          case "video_id":
+            video_id = element[1];
+            break;
           case "comments":
             comments = JSON.parse(decodeURIComponent(element[1]));
+            break;
         }
       }
       if (comments) {
@@ -148,6 +153,11 @@
     function getVideoId() {
       return document.getElementById('videoId').value;
     }
+
+    function setVideoId() {
+      document.getElementById('videoId').value = video_id;
+    }
+    setVideoId();
 
     function getCurrentTime() {
       return player.getCurrentTime();
