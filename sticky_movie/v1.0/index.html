@@ -52,7 +52,9 @@
 
   <script>
     const project_code = "sticky_movie";
-    const version = "v1.0"
+    const version = "v1.0";
+    const endpoint = "index.html";
+
     let rowNumber = 0;
     let sleepTime = 0;
 
@@ -86,7 +88,7 @@
         const readData = JSON.parse(reader.result);
         if (readData.video_id != getVideoId()) {
           link = document.createElement("a");
-          link.href = "http://" + window.location.host + "?video_id=" + readData.video_id + "&comments=" + encodeURIComponent(JSON.stringify(readData.comments)); // TODO sessionストレージなど利用することを検討する
+          link.href = "http://" + window.location.host + "/" + project_code + "/" + version + "/" + endpoint + "?video_id=" + readData.video_id + "&comments=" + encodeURIComponent(JSON.stringify(readData.comments)); // TODO sessionストレージなど利用することを検討する
           link.click();
         }
       });
@@ -268,7 +270,7 @@
 
     function replaceVideo() {
       link = document.createElement("a");
-      link.href = "http://" + window.location.host + "/" + project_code + "/" + version + "?video_id=" + getVideoId();
+      link.href = "http://" + window.location.host + "/" + project_code + "/" + version + "/" + endpoint + "?video_id=" + getVideoId();
       link.click();
     }
   </script>
