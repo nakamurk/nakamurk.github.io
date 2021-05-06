@@ -51,6 +51,8 @@
   <br><button onclick="downloadJSON()">保存</button>
 
   <script>
+    const project_code = "sticky_movie";
+    const version = "v1.0"
     let rowNumber = 0;
     let sleepTime = 0;
 
@@ -266,7 +268,7 @@
 
     function replaceVideo() {
       link = document.createElement("a");
-      link.href = "http://" + window.location.host + "?video_id=" + getVideoId();
+      link.href = "http://" + window.location.host + "/" + project_code + "/" + version + "?video_id=" + getVideoId();
       link.click();
     }
   </script>
