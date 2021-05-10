@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+  <h1>sticky_movie</h1>
+  videoId: <input type="text" id="videoId" style="width: 300px"><br>
+  データ読み込み: <input type="file" id="myJSON" accept="text/json" />
+  <hr>
+
+  <div id="player"></div>
+
+  <form>
+    <input type="text" id="sleepTime" value=10>秒</ br>
+    <textarea id='comment'>コメントを書いてください</textarea>
+  </form>
+  <button onclick="backVideo()">動画を戻す</button>
+  <button onclick="addRow()">行の追加</button>
+
+  <div id="commentTable"></div>
+  <br><button onclick="downloadJSON()">保存</button>
+  <div style="border:solid 1px #ddd; padding :10px; display:none;" id="usage">
+    <ul>
+      <li>スペースキーまたは K キー: 再生 / 一時停止</li>
+      <li>左矢印キー: 現在の動画を 5 秒戻す</li>
+      <li>右矢印キー: 現在の動画を 5 秒進める</li>
+      <li>上矢印キー: 音量を上げる</li>
+      <li>下矢印キー: 音量を下げる</li>
+      <li>F キー: 全画面モードを切り替える</li>
+      <li>J キー: 現在の動画を 10 秒戻す</li>
+      <li>L キー: 現在の動画を 10 秒進める</li>
+      <li>M キー: ミュート / ミュート解除を切り替える</li>
+      <li>0～9 キー: 指定した位置に移動する。0 は動画の先頭へ、1 は全体の 10% の位置へ、2 は全体の 20% の位置へ移動します。</li>
+    </ul>
+  </div>
+  <button id="usageButton" onclick="toggleUsage()">Usage開閉</button>
+
+  <script>
+    function resetTable() {
+      let ct = document.getElementById('commentTable');
+
+      let mt = document.getElementById('mainTable');
+      if(mt) {ct.removeChild(mt);}
+
+      let tbl = document.createElement('Table');
+      tbl.setAttribute('border', '1');
+      tbl.setAttribute('id', 'mainTable');
+
+      let thd = document.createElement('thead');
+
+      let tr = document.createElement('tr');
+
+      let th_seek = document.createElement('th');
+      th_seek.appendChild(document.createTextNode("開始秒数"));
+      tr.appendChild(th_seek);
+
+      let th_sleep = document.createElement('th');
+      th_sleep.appendChild(document.createTextNode("再生秒数"));
+      tr.appendChild(th_sleep);
+
+      let th_comment = document.createElement('th');
+      th_comment.appendChild(document.createTextNode("コメント"));
+      tr.appendChild(th_comment);
+
+      let th_play = document.createElement('th');
+      th_play.appendChild(document.createTextNode("　再生　"));
+      tr.appendChild(th_play);
+
+      let th_delete = document.createElement('th');
+      th_delete.appendChild(document.createTextNode("　削除　"));
+      tr.appendChild(th_delete);
+
+      thd.appendChild(tr);
+      tbl.appendChild(thd);
+      ct.appendChild(tbl);
+
+      let tbd = document.createElement('tbody');
+      tbd.setAttribute("id", 'commentTableBody');
+
+      tbl.appendChild(tbd);
+      ct.appendChild(tbl);
+    }
+    resetTable();
+
+    const project_code = "sticky_movie";
+    const version = "beta_v1.2";
+    const endpoint = "index.html";
+
+    let video_id;
+    let rowNumber = 0;
+    let sleepTime = 0;
+
+    let comments;
+
+    let file = document.getElementById('myJSON');
+    file.addEventListener('change', e => {
+      let result = e.target.files[0];
+      let reader = new FileReader();
+      reader.readAsText(result);
+
+      reader.addEventListener("load", () => {
+        const readData = JSON.parse(reader.result);
+        setVideoId(readData.video_id);
+
+        resetTable();
+        const coms = readData.comments;
+        for (let c in coms) {
+          addRow(coms[c].seek, coms[c].sleep, coms[c].comment);
+        }
+
+        player.cueVideoById({videoId: videoId.value});
+      });
+    });
+
+    function toggleUsage() {
+      let usage = document.getElementById('usage');
+      if (usage.style.display == 'block') {
+        usage.style.display = 'none';
+        document.getElementById("usageButton").value = '開く';
+      }
+      else {
+        usage.style.display = 'block';
+        document.getElementById("usageButton").value = '閉じる';
+      }
+    }
+
+    let tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '360',
+        width: '640',
+        videoId: getVideoId(),
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    const videoId = document.getElementById('videoId');
+    videoId.addEventListener('input', () => {
+      player.cueVideoById({videoId: videoId.value});
+    });
+
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+
+    let videoTimer;
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING && sleepTime > 0) {
+        clearTimeout(videoTimer);
+        videoTimer = setTimeout(pauseVideo, sleepTime * 1000);
+      }
+    }
+    function pauseVideo() {
+      player.pauseVideo();
+    }
+    function stopVideo() {
+      player.stopVideo();
+    }
+
+    function getVideoId() {
+      return document.getElementById('videoId').value;
+    }
+
+    function setVideoId(videoId) {
+      document.getElementById('videoId').value = videoId;
+    }
+    setVideoId();
+
+    function getCurrentTime() {
+      return player.getCurrentTime();
+    }
+
+    function getSleepTime() {
+      return document.getElementById('sleepTime').value;
+    }
+
+    function backVideo() {
+      let seekTime = getCurrentTime() - getSleepTime();
+      seekTime = (seekTime < 0) ? 0 : seekTime;
+      player.seekTo(seekTime);
+    }
+
+    function getComment() {
+      return document.getElementById('comment').value;
+    }
+
+    function addRowSeek(row, val) {
+      let newCell = row.insertCell();
+      let newInput = document.createElement("INPUT");
+      newInput.setAttribute("type", "number");
+      newInput.setAttribute("value", val);
+      newInput.setAttribute("id", "seek"+rowNumber);
+      newCell.appendChild(newInput);
+    }
+
+    function addRowSleep(row, val) {
+      let newCell = row.insertCell();
+      let newInput = document.createElement("INPUT");
+      newInput.setAttribute("type", "number");
+      newInput.setAttribute("value", val);
+      newInput.setAttribute("id", "sleep"+rowNumber);
+      newCell.appendChild(newInput);
+    }
+
+    function addRowUtilTextarea(row, comment) {
+      let newCell = row.insertCell();
+      let newTextarea = document.createElement("TEXTAREA");
+      let t = document.createTextNode(comment);
+      newTextarea.setAttribute("maxlength", 5000);
+      newTextarea.setAttribute("cols", 80);
+      newTextarea.setAttribute("row", 40);
+      newTextarea.setAttribute("id", "comment"+rowNumber);
+      newTextarea.appendChild(t);
+      newCell.appendChild(newTextarea);
+    }
+
+    function addPlayButton(row, id) {
+      let newCell = row.insertCell();
+      let newButton = document.createElement("INPUT");
+      newButton.setAttribute("type", "button");
+      newButton.setAttribute("value", "再生");
+      newButton.setAttribute("onclick", "playVideo("+id+")");
+      newCell.appendChild(newButton);
+    }
+
+    function playVideo(id) {
+      player.seekTo(document.getElementById("seek"+id).value);
+      sleepTime = document.getElementById("sleep"+id).value;
+      player.playVideo();
+    }
+
+    function addDeleteButton(row, id) {
+      let newCell = row.insertCell();
+      let newButton = document.createElement("INPUT");
+      newButton.setAttribute("type", "button");
+      newButton.setAttribute("onclick", "deleteRow("+id+")");
+      newButton.setAttribute("value", "削除");
+      newCell.appendChild(newButton);
+    }
+
+    function deleteRow(rowId) {
+      document.getElementById("row"+rowId).remove();
+    }
+
+    function addRow(seekTime = null, sleepTime = null, comment = null) {
+      let table = document.getElementById('commentTableBody');
+      let newRow = table.insertRow();
+      newRow.setAttribute("id", "row" + rowNumber);
+
+      if (seekTime != null && sleepTime != null && comment != null) {
+        addRowSeek(newRow, seekTime);
+        addRowSleep(newRow, sleepTime);
+        addRowUtilTextarea(newRow, comment);
+      } else {
+        addRowSeek(newRow, getCurrentTime());
+        addRowSleep(newRow, getSleepTime());
+        addRowUtilTextarea(newRow, getComment());
+      }
+      addPlayButton(newRow, rowNumber);
+      addDeleteButton(newRow, rowNumber);
+      rowNumber++;
+    }
+
+    function makeJSON() {
+      let outputJSON = {
+        video_id: getVideoId(),
+        comments: getComments()
+      };
+      return outputJSON;
+    }
+
+    function getComments() {
+      let ret = {};
+      for (i = 0; i < rowNumber; i++) {
+        ret[i] = {
+          seek: document.getElementById('seek'+i).value,
+          sleep: document.getElementById('sleep'+i).value,
+          comment: document.getElementById('comment'+i).value,
+        };
+      }
+      return ret;
+    }
+
+    function downloadJSON() {
+      const outputJSON = makeJSON();
+      const filename = getVideoId() + ".json";
+      const data = JSON.stringify(outputJSON);
+      const link = document.createElement("a");
+      link.href = "data:text/plain," + encodeURIComponent(data);
+      link.download = filename;
+      link.click();
+    }
+  </script>
+
+</body>
+</html>
