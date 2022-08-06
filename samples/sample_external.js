@@ -1,0 +1,1 @@
+console.log("sample_external.js")
