@@ -17,4 +17,19 @@ title: curious_list
 > 知ってた?win11の初期設定のサインインでa@a.comって打ってパスワードは123にするとローカルアカウントで使うことができるんだよ
 
 * [.NET MAUI とは](https://learn.microsoft.com/ja-jp/dotnet/maui/what-is-maui?view=net-maui-7.0)
-* [](https://learn.microsoft.com/ja-jp/ef/core/providers/in-memory/?tabs=dotnet-core-cli)
+* [in-memory](https://learn.microsoft.com/ja-jp/ef/core/providers/in-memory/?tabs=dotnet-core-cli)
+
+# github
+
+*  https://docs.github.com/ja/get-started/writing-on-github
+
+## markdown
+
+### draw with markdown
+
+* https://qiita.com/irongineer/items/23fcd55830ae2de96ca8
+* https://github.com/plantuml-stdlib/Azure-PlantUML
+* https://github.com/plantuml-stdlib/Azure-PlantUML/blob/master/AzureSymbols.md
+* https://qiita.com/dbgso/items/736eb791149dbb0c3cf3
+* https://github.com/plantuml-stdlib/C4-PlantUML
+* https://github.com/Roemer/plantuml-office

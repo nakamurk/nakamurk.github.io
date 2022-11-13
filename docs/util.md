@@ -3,13 +3,22 @@ layout: default
 title: util
 ---
 
+# 試験
+
+## 過去問道場
+
+* [IPA-SC](https://www.sc-siken.com/sckakomon.php)
+
+# google
+
+* [google trends](https://trends.google.co.jp/trends/trendingsearches/daily?geo=JP)
+
 # tool
 
 * [JavaScript Obfuscator Tool](https://obfuscator.io/)
 
 # Microsoft
 
-* [Microsoft 365 開発者プログラム](https://developer.microsoft.com/)
 
 # Search
 
@@ -18,18 +27,11 @@ title: util
 # 広めたいリンク
 
 * [絵文字検索](https://lets-emoji.com/)
+* [icon](https://icooon-mono.com/)
 
-* github
-  *  https://docs.github.com/ja/get-started/writing-on-github
+# security
 
-## markdown
+* [Global Sygn](https://globalsign.ssllabs.com/analyze.html)
 
 
-### draw with markdown
 
-* https://qiita.com/irongineer/items/23fcd55830ae2de96ca8
-* https://github.com/plantuml-stdlib/Azure-PlantUML
-* https://github.com/plantuml-stdlib/Azure-PlantUML/blob/master/AzureSymbols.md
-* https://qiita.com/dbgso/items/736eb791149dbb0c3cf3
-* https://github.com/plantuml-stdlib/C4-PlantUML
-} https://github.com/Roemer/plantuml-office
