@@ -3,6 +3,8 @@
 # life
 
 * [service](service.md)
+* [music](music.md)
+* [cook](cook.md)
 
 # work
 
