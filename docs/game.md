@@ -1,9 +1,12 @@
 ---
 layout: default
-title: トップページ
+title: game
 ---
 
-# トップページです
+# game
 
-* hoge
-* huga
+* [sadservers](https://sadservers.com/)
+
+
+
+
