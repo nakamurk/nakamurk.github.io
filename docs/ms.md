@@ -3,6 +3,9 @@ layout: default
 title: ms-docs
 ---
 
+# test
+
+* [learn_users](https://learn.microsoft.com/ja-jp/users/nakamurk-3220/transcript)
 
 # Dev
 
@@ -81,3 +84,4 @@ title: ms-docs
 * 外部連絡先
 * 配布グループ
 
+* [Microsoft entra](https://www.microsoft.com/ja-jp/security/business/microsoft-entra)
