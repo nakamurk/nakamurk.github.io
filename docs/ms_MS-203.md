@@ -9,6 +9,7 @@ title: util
 * [map](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE56CI8)
 
 * [Microsoft 365 認定:Messaging Administrator Associate](https://learn.microsoft.com/ja-jp/certifications/m365-messaging-administrator/)
+  * [Skills Measured](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE3VEHd)
 * [試験 MS-203: Microsoft 365 Messaging](https://learn.microsoft.com/ja-jp/certifications/exams/ms-203)
   * [MS-203 Microsoft 365 でトランスポート パイプラインを管理する](https://learn.microsoft.com/ja-jp/training/paths/manage-transport-pipeline-microsoft-365/)
   * [MS-203 Microsoft 365 でのメール フローの管理とトラブルシューティング](https://learn.microsoft.com/ja-jp/training/paths/manage-troubleshoot-mail-flow-microsoft-365/)
