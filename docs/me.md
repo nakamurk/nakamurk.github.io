@@ -1,35 +1,35 @@
 
-## .
+## ./00_me
 
-* [curious_list.md](./curious_list.md)
+* [curious_list.md](./00_me/curious_list.md)
+* [tmp.md](./00_me/tmp.md)
 
-## ./hobby
+## ./01_life
 
-* [bounty_list.md](./hobby/bounty_list.md)
-* [game.md](./hobby/game.md)
-* [karaoke.md](./hobby/karaoke.md)
-* [rugby.md](./hobby/rugby.md)
+* [cook.md](./01_life/cook.md)
+* [music.md](./01_life/music.md)
+* [service.md](./01_life/service.md)
 
-## ./life
+## ./02_work/ms
 
-* [cook.md](./life/cook.md)
-* [music.md](./life/music.md)
-* [service.md](./life/service.md)
+* [ms.md](./02_work/ms/ms.md)
+* [ms_MS-203.md](./02_work/ms/ms_MS-203.md)
+
+## ./02_work
+
+* [traning.md](./02_work/traning.md)
+
+## ./07_hobby
+
+* [bounty_list.md](./07_hobby/bounty_list.md)
+* [game.md](./07_hobby/game.md)
+* [karaoke.md](./07_hobby/karaoke.md)
+* [rugby.md](./07_hobby/rugby.md)
+
+## ./09_work
+
+* [util.md](./09_work/util.md)
 
 ## .
 
 * [me.md](./me.md)
-
-## ./other
-
-* [util.md](./other/util.md)
-
-## .
-
-* [tmp.md](./tmp.md)
-
-## ./work
-
-* [ms.md](./work/ms.md)
-* [ms_MS-203.md](./work/ms_MS-203.md)
-* [traning.md](./work/traning.md)
