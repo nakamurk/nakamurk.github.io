@@ -3,11 +3,6 @@ layout: default
 title: util
 ---
 
-# 試験
-
-## 過去問道場
-
-* [IPA-SC](https://www.sc-siken.com/sckakomon.php)
 
 # google
 
@@ -31,7 +26,7 @@ title: util
 
 # security
 
-* [Global Sygn](https://globalsign.ssllabs.com/analyze.html)
+* [Global Sign](https://globalsign.ssllabs.com/analyze.html)
 
 
 

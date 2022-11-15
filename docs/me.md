@@ -13,6 +13,8 @@
 ## ./02_work/ms
 
 * [ms.md](./02_work/ms/ms.md)
+* [ms_AAD.md](./02_work/ms/ms_AAD.md)
+* [ms_DFS.md](./02_work/ms/ms_DFS.md)
 * [ms_MS-203.md](./02_work/ms/ms_MS-203.md)
 
 ## ./02_work

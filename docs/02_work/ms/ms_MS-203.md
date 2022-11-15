@@ -7,6 +7,7 @@ title: util
   * [Microsoft 365 ドキュメント](https://learn.microsoft.com/ja-jp/microsoft-365/?view=o365-worldwide)
   * [Exchange ドキュメント](https://learn.microsoft.com/ja-jp/Exchange/)
 * [map](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE56CI8)
+* [blog](https://jpmessaging.github.io/blog/)
 
 * [Microsoft 365 認定:Messaging Administrator Associate](https://learn.microsoft.com/ja-jp/certifications/m365-messaging-administrator/)
   * [Skills Measured](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE3VEHd)

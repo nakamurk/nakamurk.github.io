@@ -4,6 +4,12 @@ title: traning
 ---
 
 
+# 試験
+
+## 過去問道場
+
+* [IPA-SC](https://www.sc-siken.com/sckakomon.php)
+
 # work
 
 ## MS
