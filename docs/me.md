@@ -23,6 +23,7 @@
 
 ## ./07_hobby
 
+* [anime.md](./07_hobby/anime.md)
 * [bounty_list.md](./07_hobby/bounty_list.md)
 * [game.md](./07_hobby/game.md)
 * [karaoke.md](./07_hobby/karaoke.md)
