@@ -85,3 +85,5 @@ title: ms-docs
 * 配布グループ
 
 * [Microsoft entra](https://www.microsoft.com/ja-jp/security/business/microsoft-entra)
+
+* https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics

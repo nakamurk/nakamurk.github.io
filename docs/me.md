@@ -1,37 +1,61 @@
 
-## ./00_me
+## ./000_me
 
-* [curious_list.md](./00_me/curious_list.md)
-* [tmp.md](./00_me/tmp.md)
+* [curious_list.md](./000_me/curious_list.md)
+* [tmp.md](./000_me/tmp.md)
 
-## ./01_life
+## ./002_idea
 
-* [cook.md](./01_life/cook.md)
-* [music.md](./01_life/music.md)
-* [service.md](./01_life/service.md)
+* [Extension_Docsを多言語で表示する.md](./002_idea/Extension_Docsを多言語で表示する.md)
+* [idia.md](./002_idea/idia.md)
 
-## ./02_work/ms
+## ./010_life
 
-* [ms.md](./02_work/ms/ms.md)
-* [ms_AAD.md](./02_work/ms/ms_AAD.md)
-* [ms_DFS.md](./02_work/ms/ms_DFS.md)
-* [ms_MS-203.md](./02_work/ms/ms_MS-203.md)
+* [cook.md](./010_life/cook.md)
+* [music.md](./010_life/music.md)
+* [service.md](./010_life/service.md)
 
-## ./02_work
+## ./011_rugby
 
-* [traning.md](./02_work/traning.md)
+* [rugby.md](./011_rugby/rugby.md)
 
-## ./07_hobby
+## ./019_new
 
-* [anime.md](./07_hobby/anime.md)
-* [bounty_list.md](./07_hobby/bounty_list.md)
-* [game.md](./07_hobby/game.md)
-* [karaoke.md](./07_hobby/karaoke.md)
-* [rugby.md](./07_hobby/rugby.md)
+* [2022.md](./019_new/2022.md)
 
-## ./09_work
+## ./020_work
 
-* [util.md](./09_work/util.md)
+* [traning.md](./020_work/traning.md)
+
+## ./021_Microsoft
+
+* [ms.md](./021_Microsoft/ms.md)
+* [ms_AAD.md](./021_Microsoft/ms_AAD.md)
+* [ms_DFS.md](./021_Microsoft/ms_DFS.md)
+* [ms_MS-203.md](./021_Microsoft/ms_MS-203.md)
+* [調べること.md](./021_Microsoft/調べること.md)
+
+## ./030_engineer
+
+* [bounty_list.md](./030_engineer/bounty_list.md)
+
+## ./070_hobby
+
+* [anime.md](./070_hobby/anime.md)
+* [game.md](./070_hobby/game.md)
+* [karaoke.md](./070_hobby/karaoke.md)
+
+## ./091_question
+
+* [question.md](./091_question/question.md)
+
+## ./092_words
+
+* [words.md](./092_words/words.md)
+
+## ./099_util
+
+* [util.md](./099_util/util.md)
 
 ## .
 

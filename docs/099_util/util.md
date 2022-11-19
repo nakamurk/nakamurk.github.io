@@ -12,9 +12,6 @@ title: util
 
 * [JavaScript Obfuscator Tool](https://obfuscator.io/)
 
-# Microsoft
-
-
 # Search
 
 * [国会図書館リサーチナビ](https://rnavi.ndl.go.jp/jp/material.html)
@@ -28,5 +25,8 @@ title: util
 
 * [Global Sign](https://globalsign.ssllabs.com/analyze.html)
 
+# Network
 
+* [fast](https://fast.com/ja/)
+* [usen](https://speedtest.gate02.ne.jp/)
 
