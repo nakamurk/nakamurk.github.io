@@ -2,6 +2,7 @@
 ## ./000_me
 
 * [curious_list.md](./000_me/curious_list.md)
+* [mermaid.md](./000_me/mermaid.md)
 * [tmp.md](./000_me/tmp.md)
 
 ## ./002_idea
@@ -38,6 +39,10 @@
 ## ./030_engineer
 
 * [bounty_list.md](./030_engineer/bounty_list.md)
+
+## ./031_output
+
+* [google_extension.md](./031_output/google_extension.md)
 
 ## ./070_hobby
 
