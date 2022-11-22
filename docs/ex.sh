@@ -9,7 +9,7 @@ for i in `find -name "*.md" | sort`; do
   echo "* [${i##*/}]($i)"
 done > hoge.dat
 
-for i in `find -name "*.html" | sort`; do
+for i in `find -name "*.png" | sort`; do
   echo "* [${i##*/}]($i)"
 done >> hoge.dat
 

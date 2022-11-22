@@ -66,5 +66,4 @@
 
 * [hoge.md](./hoge.md)
 * [me.md](./me.md)
-* [hoge20221121.html](./hoge20221121.html)
-* [index.html](./index.html)
+* [hoge20221121.png](./hoge20221121.png)
