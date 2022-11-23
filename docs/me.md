@@ -64,7 +64,6 @@
 
 ## ./Mermaid
 
-* [hoge.md](./Mermaid/hoge.md)
 * [sample.md](./Mermaid/sample.md)
 
 ## .

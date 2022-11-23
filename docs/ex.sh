@@ -2,10 +2,9 @@
 
 for i in `find WORK -name "*.md" | sort`; do
   echo "### $i" >&2
-  echo "* [${i##*/}](Mermaid/${i##*/})"
   mmdc -i ${i} -e png >&2
   mv ${i}* Mermaid
-done >> hoge.dat
+done > hoge.dat
 
 for i in `find Mermaid -name "*.md" | sort`; do
   I=`basename $i`
@@ -26,6 +25,7 @@ for i in `find Mermaid -name "*.md" | sort`; do
 done
 
 dir="./xxx"
+: > hoge.dat
 for i in `find -name "*.md" | sort`; do
   if [[ ${i} =~ node_modules ]]; then
     continue
