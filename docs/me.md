@@ -62,13 +62,11 @@
 
 * [util.md](./099_util/util.md)
 
-## ./Mermaid
+## ./WORK
 
-* [20221123.md](./Mermaid/20221123.md)
-* [hoge.md](./Mermaid/hoge.md)
+* [sample.md](./WORK/sample.md)
 
 ## .
 
 * [me.md](./me.md)
-* [20221123.md](Mermaid/20221123.md)
-* [hoge.md](Mermaid/hoge.md)
+* [sample.md](Mermaid/sample.md)
