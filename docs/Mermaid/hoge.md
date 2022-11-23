@@ -4,6 +4,7 @@
 * a
 * a
 
+![hoge.md-1.png](hoge.md1-png)
 ```mermaid
 flowchart LR
 
@@ -13,7 +14,7 @@ C -->|One| D[Result 1]
 C -->|Two| E[Result 2]
 ```
 
-
+![hoge.md-2.png](hoge.md-2.png)
 ```mermaid
 gantt
     section Section
