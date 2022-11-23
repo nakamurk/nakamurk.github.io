@@ -62,8 +62,11 @@
 
 * [util.md](./099_util/util.md)
 
+## ./Mermaid
+
+* [hoge.md](./Mermaid/hoge.md)
+
 ## .
 
-* [hoge.md](./hoge.md)
 * [me.md](./me.md)
-* [hoge20221121.png](./hoge20221121.png)
+* [hoge.md](Mermaid/hoge.md)
