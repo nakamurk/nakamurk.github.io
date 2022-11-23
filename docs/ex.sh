@@ -37,8 +37,4 @@ for i in `find -name "*.md" | sort`; do
   echo "* [${i##*/}]($i)"
 done > hoge.dat
 
-for i in `find Mermaid/ -type d`; do
-  echo "* [${i##*/}]($i)"
-done >> hoge.dat
-
 mv hoge.dat me.md
