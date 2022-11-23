@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in `find WORK -name "*.md" | sort`; do
+for i in `find WORK -maxdepth 2 -name "*.md" | sort`; do
   echo "### $i" >&2
   mmdc -i ${i} -e png >&2
   mv ${i}* Mermaid
@@ -36,5 +36,9 @@ for i in `find -name "*.md" | sort`; do
   dir=${i%/*}
   echo "* [${i##*/}]($i)"
 done > hoge.dat
+
+for i in `find Mermaid/ -type d`; do
+  echo "* [${i##*/}]($i)"
+done >> hoge.dat
 
 mv hoge.dat me.md
