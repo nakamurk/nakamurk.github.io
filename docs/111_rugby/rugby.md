@@ -11,7 +11,9 @@ title: rugby
     * スクラムの機微な状態の変化を観察する: 目の前の現象で何が起こっているかを判定できるようになる
     * 80分間明確な基準を示す: プリベンドしてもよい状況かペナライズすべきなのか見極める
 
+# PC
 
+* [日程](https://league-one.jp/content/schedule_table/div1)
 
 # J sports
 
@@ -28,4 +30,5 @@ title: rugby
 * (年月日 A vs B グラウンド（天然、人口） 天候 レフリー)[http://example.com]
   * 時間（映像の時間）
   * 判定
+
 
