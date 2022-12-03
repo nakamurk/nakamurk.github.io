@@ -28,6 +28,8 @@ title: ms-docs
 * PowerShellを簡単に利用する方法：コマンド実行は簡単にしたいときに何をやるか
 * Update Sequence Numberジャーナル
 
+* [Microsoft Learn. Spark possibility.](https://learn.microsoft.com/en-us/?view=exchange-ps)
+
 * ライセンスのまとめ
 
 # Technical element
