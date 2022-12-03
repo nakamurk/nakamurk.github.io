@@ -1,0 +1,13 @@
+{
+  "name": "display_related_page",
+  "version": "0.1.0",
+  "icons": {"32":"icon32.png"},
+  "manifest_version": 3,
+  "description": "Check the hostname of location of the website you visited is ASCII characters used as URL(alphanumeric and some symbols), and alert it if not.",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main.js"]
+    }
+  ]
+}
