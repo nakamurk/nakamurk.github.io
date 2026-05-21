@@ -82,3 +82,4 @@
 
 * [me.md](./me.md)
 * [sitemap.md](./sitemap.md)
+* [copilot_wiki.md](./copilot_wiki.md)
