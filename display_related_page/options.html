@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>display_related_page Settings</title>
+  <style>
+    body {
+      margin: 24px;
+      font-family: sans-serif;
+      line-height: 1.5;
+      max-width: 640px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 0 0 16px;
+    }
+
+    .row {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .checkbox-row input {
+      width: auto;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checkbox-row label {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    button {
+      margin-top: 8px;
+      padding: 8px 14px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 10px;
+      min-height: 20px;
+      color: #126126;
+    }
+
+    .note {
+      margin-top: 16px;
+      color: #555;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <h1>display_related_page Settings</h1>
+
+  <div class="row">
+    <label for="localeA">Locale A</label>
+    <input id="localeA" type="text" placeholder="en-us">
+  </div>
+
+  <div class="row">
+    <label for="localeB">Locale B</label>
+    <input id="localeB" type="text" placeholder="ja-jp">
+  </div>
+
+  <div class="checkbox-row">
+    <input id="showPopupOnMatch" type="checkbox">
+    <label for="showPopupOnMatch">動作時にポップアップ通知を表示する</label>
+  </div>
+
+  <div class="checkbox-row">
+    <input id="enableDebugLog" type="checkbox">
+    <label for="enableDebugLog">コンソールにデバッグログを出力する</label>
+  </div>
+
+  <button id="save">Save</button>
+  <div id="status" aria-live="polite"></div>
+
+  <p class="note">
+    URL に Locale A か Locale B が含まれている場合、もう片方の URL を右側に表示します。
+  </p>
+
+  <script src="options.js"></script>
+</body>
+</html>
