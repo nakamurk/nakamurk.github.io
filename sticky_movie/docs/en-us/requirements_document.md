@@ -1,6 +1,6 @@
 # sticky_movie Requirements Document
 
-Target version: v1.0.0 (official release)
+Target version: v1.0.1 (official release)
 
 ## 1. Purpose
 Provide a lightweight tool to review YouTube match footage with time-based comments and coaching report generation.
@@ -14,7 +14,9 @@ Provide a lightweight tool to review YouTube match footage with time-based comme
 1. Video Requirements
 - FR-001: System shall accept YouTube ID/URL input.
 - FR-002: System shall load selected video into embedded player.
-- FR-003: System shall place video settings inside a "Settings" toggle and expose only video ID/URL and play duration inputs.
+- FR-003: System shall place video settings inside the settings screen and expose only video ID/URL and play duration inputs.
+- FR-004: System shall render settings UI as a JavaScript-controlled overlay.
+- FR-005: Settings overlay shall be displayed at 90% viewport width (90vw).
 
 2. Commenting Requirements
 - FR-101: System shall allow creating comment rows with seek and duration.
@@ -22,6 +24,9 @@ Provide a lightweight tool to review YouTube match footage with time-based comme
 - FR-103: System shall allow editing comment/event/type text fields.
 - FR-104: System shall play and stop video segment by row settings.
 - FR-105: System shall allow deleting comment rows.
+- FR-106: System shall provide team selection (home, visitor).
+- FR-107: System shall provide type input as a dropdown selector.
+- FR-108: System shall include "turnover" in label options.
 
 3. Data Import/Export Requirements
 - FR-201: System shall export comments as JSON.
@@ -51,6 +56,14 @@ Provide a lightweight tool to review YouTube match footage with time-based comme
 - FR-601: System shall provide filtering by category/type/event/comment.
 - FR-602: System shall provide type filter as a dropdown.
 - FR-603: System shall provide filter reset action.
+
+8. Shortcut Requirements (v1.0.1)
+- FR-701: System shall provide a shortcut settings screen for editing and saving bindings.
+- FR-702: System shall provide a `Apply Settings` submit button in shortcut settings.
+- FR-703: System shall provide a `Reset to Default` button in shortcut settings.
+- FR-704: System shall execute UI operations on shortcut match (button click, focus, dropdown expand, radio select, checkbox toggle).
+- FR-705: System shall provide a "override browser default shortcuts" option and apply `preventDefault` / `stopPropagation` when enabled.
+- FR-706: System shall preload default shortcuts (Ctrl+Enter, Shift+J, Shift+K, Shift+?, Alt+1/2/3, Alt+H/V, Alt+T/M/R/P/F/S/L, Shift+T).
 
 ## 4. Non-Functional Requirements
 - NFR-001: App shall run as static files without build tooling.

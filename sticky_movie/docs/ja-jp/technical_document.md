@@ -14,6 +14,12 @@
 - レポート表示位置は `page-header` 下端に合わせて動的調整。
 - レポート開閉は `reportToggleTab` / `reportCloseButton` / backdrop / `Escape` で制御。
 
+## レイアウト実装（v1.0.1 追補）
+- 設定画面を `details` ではなく、JavaScript制御のオーバーレイとして実装。
+- 設定オーバーレイは `settingsOverlay` / `settingsBackdrop` / `settingsCloseButton` で開閉を制御。
+- 設定オーバーレイ幅は `90vw`。
+- `Escape` 押下で設定オーバーレイとレポートオーバーレイの両方を閉じる。
+
 ## 主要コンポーネント
 1. 状態管理（app.js）
 - グローバル状態オブジェクトで以下を管理:
@@ -29,7 +35,7 @@
   - onStateChange
   - onError
 - seek + 指定秒後の一時停止再生をサポート。
-- 動画設定入力は `section1`（details）へ集約し、入力項目は `videoId` と `sleepTime` のみ。
+- 動画設定入力は設定オーバーレイへ集約し、入力項目は `videoId` と `sleepTime` のみ。
 
 3. コメントテーブルエンジン
 - DOM APIで動的にテーブルを生成。
@@ -39,6 +45,25 @@
 - 種類セルは `select` 要素で編集。
 - フィルター（分類/種類/事象/コメント）とリセット操作を提供。
 - getComments() でシリアライズ。
+- コメント入力では `commentType` を `select` 化。
+- コメントラベルに `ターンオーバー` を追加。
+
+3.5 ショートカットエンジン（v1.0.1）
+- ショートカット設定状態を `state.shortcutSettings` と `state.shortcutMap` で管理。
+- 主な処理:
+  - `normalizeShortcutComboFromEvent()` でキー入力正規化
+  - `validateShortcutSettings()` で設定検証
+  - `rebuildShortcutMap()` で高速参照Map構築
+  - `handleShortcutKeydown()` でショートカット実行
+- 対応アクション:
+  - `clickButton`
+  - `focusElement`
+  - `expandSelect`
+  - `selectRadio`
+  - `toggleCheckbox`
+  - `setCheckbox`
+- `expandSelect` は `commentType` の `size` を一時拡張し、`blur/change` で戻す。
+- `preventBrowserDefault=true` の場合、ショートカット一致時に `preventDefault` / `stopPropagation` を実行。
 
 4. Markdownエンジン
 - 生成側:
@@ -61,10 +86,13 @@
   - バージョン付きペイロード
   - サイズ上限ガード
   - 自動保存/自動復元（F5対策）
+- v1.0.1 ではキャッシュキーを `sticky_movie_v1_0_1_cache` へ更新。
+- フォーム状態に `commentTeam` と `shortcutSettings` を含めて保存/復元。
 
 ## 正式版フォルダ
 - `v1.0.0/` を正式版として追加。
 - `beta_v1.5` の現行実装を引き継ぎ、README/Docsを正式版基準へ更新。
+- `v1.0.1/` を追加し、ショートカット設定画面とキー割当機能を拡張。
 
 ## データ構造
 1. JSONエクスポート

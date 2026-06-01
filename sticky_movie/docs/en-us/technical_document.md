@@ -14,6 +14,12 @@
 - Report overlay top offset is aligned to the bottom edge of `page-header`.
 - Report open/close behavior is controlled by `reportToggleTab`, `reportCloseButton`, backdrop click, and `Escape`.
 
+## Layout Implementation (v1.0.1 supplement)
+- Settings UI moved from `details` to a JavaScript-controlled overlay.
+- Settings overlay open/close is controlled by `settingsOverlay`, `settingsBackdrop`, and `settingsCloseButton`.
+- Settings overlay width is `90vw`.
+- `Escape` closes both settings and report overlays.
+
 ## Core Components
 1. State Management (`app.js`)
 - Global state object tracks:
@@ -29,7 +35,7 @@
   - onStateChange
   - onError
 - Supports seek + timed pause playback.
-- Video settings are grouped in `section1` (`details`) with only `videoId` and `sleepTime` as inputs.
+- Video settings are grouped in settings overlay with only `videoId` and `sleepTime` as inputs.
 
 3. Comment Table Engine
 - Dynamic table generation through DOM APIs.
@@ -39,6 +45,25 @@
 - Row `type` cell is edited with `select` dropdown.
 - Filters are available for category/type/event/comment with reset action.
 - Serialization through `getComments()`.
+- Comment input `type` is also implemented as `select`.
+- Label options include `turnover`.
+
+3.5 Shortcut Engine (v1.0.1)
+- Shortcut settings state is managed via `state.shortcutSettings` and `state.shortcutMap`.
+- Core flow:
+  - `normalizeShortcutComboFromEvent()` for key normalization
+  - `validateShortcutSettings()` for binding validation
+  - `rebuildShortcutMap()` for fast combo lookup
+  - `handleShortcutKeydown()` for action dispatch
+- Supported actions:
+  - `clickButton`
+  - `focusElement`
+  - `expandSelect`
+  - `selectRadio`
+  - `toggleCheckbox`
+  - `setCheckbox`
+- `expandSelect` temporarily increases `commentType` select `size`, then reverts on `blur/change`.
+- When `preventBrowserDefault=true`, matching shortcuts call `preventDefault` and `stopPropagation`.
 
 4. Markdown Engine
 - Generator:
@@ -53,10 +78,13 @@
   - versioned payload
   - max size guard
   - automatic save/restore for reload resilience
+- v1.0.1 updates cache key to `sticky_movie_v1_0_1_cache`.
+- Form snapshot includes `commentTeam` and `shortcutSettings`.
 
 ## Official Release Folder
 - Added `v1.0.0/` as the official release folder.
 - The folder is based on current `beta_v1.5` implementation.
+- Added `v1.0.1/` with settings overlay and extended shortcut capabilities.
 
 ## Data Structures
 1. JSON Export

@@ -4,7 +4,7 @@
 sticky_movie is a browser-based tool for annotating specific segments of YouTube videos and generating coaching reports.
 
 ## Scope
-- Target version: v1.0.0 (official release)
+- Target version: v1.0.1 (official release)
 - Runtime: single-page web app (no build process)
 - Main usage: referee/coaching review workflow
 
@@ -14,12 +14,14 @@ sticky_movie is a browser-based tool for annotating specific segments of YouTube
 - The bottom row shall display ④ comment list at 100% width.
 - The coaching report shall be displayed as a left-side overlay with 70% width, opened by a toggle button.
 - The coaching report overlay shall start below `page-header`.
+- Settings shall be displayed as a JavaScript-controlled overlay.
+- Settings overlay width shall be `90vw`.
 
 1. Video Load
 - Accept YouTube video ID or URL input.
 - Normalize URL formats and load via YouTube IFrame API.
 - Support manual load trigger.
-- The "Settings" toggle shall include only video ID/URL and play duration inputs.
+- The settings screen shall include only video ID/URL and play duration inputs.
 
 2. Comment Annotation
 - Add comment rows with:
@@ -29,9 +31,34 @@ sticky_movie is a browser-based tool for annotating specific segments of YouTube
   - category (first half / second half / other)
   - event
   - type
+  - team (home / visitor)
 - Play segment per row.
 - Delete row.
+- Allow selecting `type` from a dropdown in comment input.
 - Allow editing `type` in each row via dropdown.
+- Include `turnover` as a label option.
+
+2.5 Shortcut Feature (v1.0.1)
+- Provide shortcut settings inside settings overlay.
+- Shortcut settings includes:
+  - enable/disable toggle
+  - allow-in-text-input toggle
+  - override-browser-default toggle
+  - bindings table (combo, action, target, value, description)
+  - `Add Binding` / `Apply Settings` / `Reset to Default`
+- Supported actions:
+  - `clickButton`
+  - `focusElement`
+  - `expandSelect`
+  - `selectRadio`
+  - `toggleCheckbox`
+  - `setCheckbox`
+- `expandSelect` temporarily expands `type` dropdown to near full list visibility, then collapses on change or blur.
+- Default shortcuts:
+  - actions: `Ctrl+Enter`, `Shift+J`, `Shift+K`, `Shift+?`
+  - category: `Alt+1`, `Alt+2`, `Alt+3`
+  - team: `Alt+H`, `Alt+V`
+  - labels: `Alt+T`, `Alt+M`, `Alt+R`, `Alt+P`, `Alt+F`, `Alt+S`, `Alt+L`, `Shift+T`
 
 3. Data I/O
 - JSON load and save.

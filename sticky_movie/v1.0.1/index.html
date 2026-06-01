@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sticky_movie v1.0.1</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <h1>sticky_movie v1.0.1</h1>
+        <div class="header-buttons">
+          <button type="button" id="section1HeaderToggle" class="secondary" aria-controls="settingsOverlay" aria-expanded="false">設定</button>
+          <button type="button" id="loadVideoButton">動画を読み込む</button>
+          <label for="markdownFile" class="header-file-label">MD読込</label>
+          <input type="file" id="markdownFile" class="header-file-input" accept=".md,text/markdown">
+          <button type="button" id="downloadMarkdownButton" class="secondary">MD保存</button>
+          <button type="button" id="cacheClearButton" class="secondary">キャッシュ削除</button>
+          <button type="button" id="usageButton" class="secondary">Usage</button>
+          <button type="button" id="reportToggleTab" class="secondary report-launch-button" aria-controls="reportOverlay" aria-expanded="false">全体レポート</button>
+        </div>
+      </div>
+      <div id="status" class="status"></div>
+    </div>
+
+    <div id="settingsOverlay" class="settings-overlay" aria-hidden="true">
+      <div id="settingsBackdrop" class="settings-overlay-backdrop"></div>
+      <aside id="settingsDrawer" class="settings-drawer card" role="dialog" aria-label="設定">
+        <div class="settings-drawer-header">
+          <h2>設定</h2>
+          <button type="button" id="settingsCloseButton" class="secondary">閉じる</button>
+        </div>
+
+        <div class="field-grid compact-grid">
+          <label for="videoId">YouTube ID / URL</label>
+          <input type="text" id="videoId" placeholder="動画IDまたはURL">
+
+          <label for="localVideoFile">ローカル動画ファイル</label>
+          <input type="file" id="localVideoFile" accept="video/*">
+
+          <label for="sleepTime">再生秒数</label>
+          <input type="number" id="sleepTime" value="10" min="0" step="1">
+        </div>
+
+        <hr>
+        <h3>ショートカット設定</h3>
+        <p class="shortcut-help">画面で可能な操作に対してショートカットを割り当てます。入力欄はキー押下で自動入力できます。</p>
+
+        <div class="shortcut-settings">
+          <div class="shortcut-top-options">
+            <label><input type="checkbox" id="shortcutEnabled" checked> ショートカットを有効化</label>
+            <label><input type="checkbox" id="shortcutAllowInText" checked> テキスト入力中も有効化</label>
+            <label><input type="checkbox" id="shortcutOverrideBrowser" checked> ブラウザ既定ショートカットを上書き</label>
+          </div>
+
+          <div class="table-wrap shortcut-table-wrap">
+            <table id="shortcutTable">
+              <thead>
+                <tr>
+                  <th>ショートカット</th>
+                  <th>アクション</th>
+                  <th>対象</th>
+                  <th>値</th>
+                  <th>説明</th>
+                  <th>削除</th>
+                </tr>
+              </thead>
+              <tbody id="shortcutTableBody"></tbody>
+            </table>
+          </div>
+          <div class="row">
+            <button type="button" id="shortcutAddRowButton" class="secondary">割当を追加</button>
+            <button type="button" id="shortcutSubmitButton">設定更新</button>
+            <button type="button" id="shortcutResetButton" class="secondary">デフォルトにリセット</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="workspace-top">
+      <div class="video-col">
+
+        <div id="player-control-overlay">
+          <div id="player"></div>
+          <video id="localVideo" controls style="display:none;"></video>
+
+          <div id="usage">
+            <ul>
+              <li>Space / K: 再生・一時停止</li>
+              <li>J / L: 10秒戻る・進む</li>
+              <li>左 / 右: 5秒戻る・進む</li>
+              <li>上 / 下: 音量調整</li>
+              <li>F: 全画面</li>
+              <li>M: ミュート切替</li>
+              <li>0-9: 動画位置ジャンプ</li>
+            </ul>
+          </div>
+        </div>
+
+        <table id="selectedCommentText" class="selected-comment-text">
+          <thead>
+            <tr>
+              <th>開始秒数</th>
+              <th>再生秒数</th>
+              <th>種類</th>
+              <th>事象</th>
+              <th>コメント</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="comment-input-col card">
+        <h2>3. コメント入力</h2>
+        <div class="field-grid">
+          <label for="currentVideoTime">動画再生時間（動画に連動）</label>
+          <input type="text" id="currentVideoTime" value="0.0 s" readonly>
+
+          <label>分類</label>
+          <div>
+            <div class="toggle-group" role="radiogroup" aria-label="分類">
+              <input type="radio" id="catFirst" name="commentCategory" value="前半" checked>
+              <label for="catFirst" class="toggle">前半 <span class="shortcut-hint" data-shortcut-for="radio:commentCategory:前半"></span></label>
+
+              <input type="radio" id="catSecond" name="commentCategory" value="後半">
+              <label for="catSecond" class="toggle">後半 <span class="shortcut-hint" data-shortcut-for="radio:commentCategory:後半"></span></label>
+
+              <input type="radio" id="catOther" name="commentCategory" value="その他">
+              <label for="catOther" class="toggle">その他 <span class="shortcut-hint" data-shortcut-for="radio:commentCategory:その他"></span></label>
+            </div>
+            <input type="text" id="otherCategoryTag" placeholder="その他タグを入力" class="other-tag-input" style="display:none; margin-top:8px;">
+          </div>
+
+          <label>チーム</label>
+          <div>
+            <div class="toggle-group" role="radiogroup" aria-label="チーム">
+              <input type="radio" id="teamHome" name="commentTeam" value="ホーム" checked>
+              <label for="teamHome" class="toggle">ホーム <span class="shortcut-hint" data-shortcut-for="radio:commentTeam:ホーム"></span></label>
+
+              <input type="radio" id="teamVisitor" name="commentTeam" value="ビジター">
+              <label for="teamVisitor" class="toggle">ビジター <span class="shortcut-hint" data-shortcut-for="radio:commentTeam:ビジター"></span></label>
+            </div>
+          </div>
+
+          <label for="commentType">種類 <span class="shortcut-hint" data-shortcut-for="expand:commentType"></span></label>
+          <input type="text" id="commentType" list="commentTypeOptions" placeholder="種類を選択または入力">
+          <datalist id="commentTypeOptions">
+            <option value="開始"></option>
+            <option value="反則"></option>
+            <option value="再開"></option>
+            <option value="得点"></option>
+            <option value="負傷"></option>
+            <option value="コメント"></option>
+          </datalist>
+
+          <label>ラベル</label>
+          <div class="label-check-group" role="group" aria-label="コメントラベル">
+            <label><input type="checkbox" class="comment-label" value="タックル"> タックル <span class="shortcut-hint" data-shortcut-for="checkbox:commentLabel:タックル"></span></label>
+            <label><input type="checkbox" class="comment-label" value="モール"> モール <span class="shortcut-hint" data-shortcut-for="checkbox:commentLabel:モール"></span></label>
+            <label><input type="checkbox" class="comment-label" value="ラック"> ラック <span class="shortcut-hint" data-shortcut-for="checkbox:commentLabel:ラック"></span></label>
+            <label><input type="checkbox" class="comment-label" value="PK"> PK <span class="shortcut-hint" data-shortcut-for="checkbox:commentLabel:PK"></span></label>
+            <label><input type="checkbox" class="comment-label" value="FK"> FK <span class="shortcut-hint" data-shortcut-for="checkbox:commentLabel:FK"></span></label>
+            <label><input type="checkbox" class="comment-label" value="スクラム"> スクラム <span class="shortcut-hint" data-shortcut-for="checkbox:commentLabel:スクラム"></span></label>
+            <label><input type="checkbox" class="comment-label" value="ラインアウト"> ラインアウト <span class="shortcut-hint" data-shortcut-for="checkbox:commentLabel:ラインアウト"></span></label>
+            <label><input type="checkbox" class="comment-label" value="ターンオーバー"> ターンオーバー <span class="shortcut-hint" data-shortcut-for="checkbox:commentLabel:ターンオーバー"></span></label>
+          </div>
+
+          <label for="commentEvent">事象 <span class="shortcut-hint" data-shortcut-for="focus:commentEvent"></span></label>
+          <input type="text" id="commentEvent" placeholder="例: PK 緑 ノットリリース">
+
+          <label for="comment">コメント <span class="shortcut-hint" data-shortcut-for="focus:comment"></span></label>
+          <textarea id="comment">コメントを書いてください</textarea>
+        </div>
+
+        <div class="row">
+          <button type="button" id="addCommentButton">コメント追加 <span class="shortcut-hint" data-shortcut-for="button:addCommentButton"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <section class="card comment-list-panel">
+      <h2>4. コメント一覧</h2>
+      <div class="list-controls">
+        <label for="filterCategory">分類フィルター</label>
+        <select id="filterCategory">
+          <option value="">すべて</option>
+          <option value="前半">前半</option>
+          <option value="後半">後半</option>
+          <option value="その他">その他</option>
+        </select>
+
+        <label for="filterType">種類フィルター</label>
+        <select id="filterType">
+          <option value="">すべて</option>
+        </select>
+
+        <label for="filterEvent">事象フィルター</label>
+        <input type="text" id="filterEvent" placeholder="事象で絞り込み">
+
+        <label for="filterComment">コメントフィルター</label>
+        <input type="text" id="filterComment" placeholder="コメントで絞り込み">
+
+        <button type="button" id="resetFiltersButton" class="secondary">フィルターリセット</button>
+      </div>
+      <div class="table-wrap">
+        <div id="commentTable"></div>
+      </div>
+    </section>
+
+    <div id="reportOverlay" class="report-overlay" aria-hidden="true">
+      <div id="reportBackdrop" class="report-overlay-backdrop"></div>
+      <aside id="reportDrawer" class="report-drawer card" role="dialog" aria-label="コーチングレポート">
+        <div class="report-drawer-header">
+          <h2>コーチングレポート</h2>
+          <button type="button" id="reportCloseButton" class="secondary">閉じる</button>
+        </div>
+
+        <div class="field-grid">
+          <label for="reportTitle">タイトル</label>
+          <input type="text" id="reportTitle" value="レフリーコーチレポート">
+
+          <label for="reportKo">KO</label>
+          <input type="datetime-local" id="reportKo">
+
+          <label for="reportVenue">会場</label>
+          <input type="text" id="reportVenue">
+
+          <label for="reportWeather">天候</label>
+          <input type="text" id="reportWeather">
+
+          <label for="reportReferee">レフリー</label>
+          <input type="text" id="reportReferee">
+
+          <label for="reportCoach">コーチ</label>
+          <input type="text" id="reportCoach">
+
+          <label for="reportSource">ファイルパス / URL</label>
+          <input type="text" id="reportSource" placeholder="例: C:/videos/match01.mp4 または https://youtu.be/xxxxx">
+        </div>
+
+        <h3>箇条書き</h3>
+        <div class="field-grid">
+          <label for="reportSummary">サマリ</label>
+          <textarea id="reportSummary" placeholder="1行1項目"></textarea>
+
+          <label for="reportRegulation">レギュレーション</label>
+          <textarea id="reportRegulation" placeholder="1行1項目"></textarea>
+
+          <label for="reportPreInterview">事前課題ヒアリング</label>
+          <textarea id="reportPreInterview" placeholder="1行1項目"></textarea>
+
+          <label for="reportGoodPoints">良かった点</label>
+          <textarea id="reportGoodPoints" placeholder="1行1項目"></textarea>
+
+          <label for="reportSelfComment">本人のコメント</label>
+          <textarea id="reportSelfComment" placeholder="1行1項目"></textarea>
+
+          <label for="reportShared">直接伝達済み</label>
+          <textarea id="reportShared" placeholder="1行1項目"></textarea>
+
+          <label for="reportUnshared">未伝達</label>
+          <textarea id="reportUnshared" placeholder="1行1項目"></textarea>
+
+          <label for="reportOther">その他</label>
+          <textarea id="reportOther" placeholder="1行1項目"></textarea>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <p class="last-updated">最終更新: 2026-06-01 12:00 JTC</p>
+
+  <script src="app.js"></script>
+</body>
+</html>
